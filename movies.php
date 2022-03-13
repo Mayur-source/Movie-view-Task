@@ -98,7 +98,7 @@ session_start();
                 <div class="main-menu collapse navbar-collapse" id="portfolio-perfect-collapse">
                     <!-- Navigation -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="page-scroll"><a href="index.php">Home</a></li>
+                        <li class="page-scroll"><a href="index">Home</a></li>
                         <li class="page-scroll"><a href="#about">Movies</a></li>
                     </ul><!-- /.navbar-nav -->
                 </div><!-- /.navbar-collapse -->
@@ -261,7 +261,7 @@ session_start();
         function getMovies(){
             $.ajax({
                 type:'POST',
-                url:'data/movie_data.php',
+                url:'data/movie_data',
                 data: "genre="+genre+"&language="+language+"&sortBy="+sortBy,
                 success:function (e) {
                     // console.log(e);
@@ -279,7 +279,7 @@ session_start();
             
             console.log(movie_id);
 
-            
+
         }
             // window.addEventListener('scroll',(event) => {
             //     console.log('Scrolling...');

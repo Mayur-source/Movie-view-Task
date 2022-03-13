@@ -43,7 +43,7 @@
     <script src=
     "https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" />
 </head>
 <body>
@@ -66,7 +66,7 @@
                     <!-- Navigation -->
                     <ul class="nav navbar-nav navbar-right">
                         <li class="page-scroll"><a href="#intro">Home</a></li>
-                        <li class="page-scroll"><a href="movies.php">Movies</a></li>
+                        <li class="page-scroll"><a href="movies">Movies</a></li>
                     </ul><!-- /.navbar-nav -->
                 </div><!-- /.navbar-collapse -->
             </div>
@@ -204,7 +204,7 @@
     <script src="assets/js/script.js"></script>
 
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> -->
     <script type="text/javascript">

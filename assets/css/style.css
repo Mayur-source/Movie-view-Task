@@ -696,9 +696,9 @@ html, body {
 }
 
 /* Section: Hello */
-.section-hello .row {
+/* .section-hello .row {
   margin-top: 70px;
-}
+} */
 
 .section-hello .col-sm-4 {
   min-height: 325px;
@@ -775,9 +775,9 @@ html, body {
 
 @media only screen and (max-width: 767px) {
   /* Section: Hello */
-  .section-hello .row {
+  /* .section-hello .row {
     margin-top: 30px;
-  }
+  } */
   .section-hello .col-sm-4 {
     min-height: 240px;
   }
