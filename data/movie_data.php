@@ -21,7 +21,6 @@
         // image preview
         foreach (($data->fetchAll()) as $key => $row) {
             $movie_id = $row['id'];
-            $html = "";
 
             $string = strip_tags($row['description']);
             if (strlen($string) > 40) {
