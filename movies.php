@@ -172,7 +172,6 @@ session_start();
                             </div>
                             <div class="col-xs-12 col-sm-8 col-md-9">
                                 <select name="" id="sort" onchange="getSortByOnchange(this)"  class="form-control">
-                                    <!-- <option value="">All</option> -->
                                     <option value="1">Length </option>
                                     <option value="2">Release Date(New First)</option>
                                     <option value="3">Release Date(Old First)</option>
@@ -230,7 +229,11 @@ session_start();
     <script>
         var genre = "";
         var language = "";
-        var sortBy = "";
+        var sortBy = 1;
+
+        sessionStorage.setItem("genre","");
+        sessionStorage.setItem("language","");
+        sessionStorage.setItem("sortBy",sortBy);
 
         getMovies();
 
