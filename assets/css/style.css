@@ -596,9 +596,6 @@ html, body {
 /*
  * Sections
  */
-.site-section {
-  padding: 100px 0;
-}
 
 .site-section h2 {
   font-family: "Varela", sans-serif;
@@ -673,18 +670,9 @@ html, body {
   background-color: #666;
 }
 
-@media only screen and (max-width: 991px) {
-  /* Sections */
-  .site-section {
-    padding: 80px 0;
-  }
-}
 
 @media only screen and (max-width: 767px) {
-  /* Sections */
-  .site-section {
-    padding: 60px 0;
-  }
+  
   .site-section h2 {
     font-size: 24px;
   }
@@ -1141,7 +1129,7 @@ html, body {
 @media only screen and (max-width: 991px) {
   /* Section: Services */
   .section-services .container-fluid {
-    padding: 80px 15px 50px;
+    padding: 0px 15px 50px;
   }
   .section-services .container-fluid + .container {
     margin-top: 60px;

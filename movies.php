@@ -172,9 +172,10 @@ session_start();
                             </div>
                             <div class="col-xs-12 col-sm-8 col-md-9">
                                 <select name="" id="sort" onchange="getSortByOnchange(this)"  class="form-control">
-                                    <option value="">All</option>
-                                    <option value="1">Length</option>
-                                    <option value="2">Release Date</option>
+                                    <!-- <option value="">All</option> -->
+                                    <option value="1">Length </option>
+                                    <option value="2">Release Date(New First)</option>
+                                    <option value="3">Release Date(Old First)</option>
                                 </select>
                             </div>
                         </div>
@@ -231,26 +232,24 @@ session_start();
         var language = "";
         var sortBy = "";
 
-        $(function(){
-            genre = sessionStorage.genre;
-            language = sessionStorage.language;
-            sortBy = sessionStorage.sortBy;
-
-            $("#genre").val(genre);
-            $("#language").val(language);
-            $("#sortBy").val(sortBy);
-
-            getMovies();
-        });
+        getMovies();
 
         function getGenreOnchange(e) {
             genre = e.value;
             sessionStorage.setItem("genre",genre);
+
+            $("#language").val("");
+            language = "";
+
             getMovies();
         }
         function getLanguageOnchange(e) {
             language = e.value;
             sessionStorage.setItem("language",language);
+            
+            $("#genre").val("");
+            genre = "";
+            
             getMovies();
         }
         function getSortByOnchange(e) {
@@ -264,7 +263,6 @@ session_start();
                 url:'data/movie_data',
                 data: "genre="+genre+"&language="+language+"&sortBy="+sortBy,
                 success:function (e) {
-                    // console.log(e);
                     $('.preview_data').html(e);
                 },
                 error: function(err){
@@ -273,17 +271,19 @@ session_start();
             });
         }
 
-        
-        // movie detials
-        function viewDetailsOnclick(movie_id) {
-            
-            console.log(movie_id);
+        $(function(){
+            genre = sessionStorage.genre;
+            language = sessionStorage.language;
+            sortBy = sessionStorage.sortBy;
 
+            $("#genre").val(genre);
+            $("#language").val(language);
+            $("#sortBy").val(sortBy);
 
-        }
-            // window.addEventListener('scroll',(event) => {
-            //     console.log('Scrolling...');
-            // });
+            getMovies();
+
+        });
+
     </script>
 </body>
 </html>

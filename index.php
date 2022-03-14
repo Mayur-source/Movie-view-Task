@@ -43,8 +43,35 @@
     <script src=
     "https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" /> -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" />
+    <style>
+        #moviesTable th {
+            text-align: center
+        }
+        #moviesTable tr {
+            text-align: center
+        }
+        .pagination {
+            display: inline-block;   
+        }
+        .pagination a {
+            color: #000000ba;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #c5c2c282;
+        }
+        .pagination a.active {   
+            background-color: #e1e0e0;
+        }   
+        .pagination a:hover:not(.active) {   
+            background-color: #343434;
+            color: white;
+        }
+        .pagination .next_btn{
+            position: absolute;
+            right: 0px;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -84,9 +111,11 @@
         <!-- Hello section -->
 		<section class="site-section section-hello" id="intro">
 			<div class="container">
+                <h2>Movie Table</h2>
+                <br>
 				<div class="row">
 					<div class="col-md-12">
-                        <table id="moviesTable" class="table table-bordered table-striped dt-responsive nowrap w-100 table_css" style="text-align:center">
+                        <table id="moviesTable" class="table table-bordered table-striped dt-responsive nowrap w-100 table_css">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -101,7 +130,16 @@
                                 <?php
                                     require 'connect.php';
 
-                                    $data = $conn->prepare("SELECT * FROM movies ORDER BY id DESC");
+                                    $per_page_record = 10;
+                                    $row_count = 1;
+                                    
+                                    if (isset($_GET["page"])) {    
+                                        $page = $_GET["page"];    
+                                    } else {    
+                                        $page = 1;    
+                                    }
+                                    $start_from = ($page-1) * $per_page_record;
+                                    $data = $conn->prepare("SELECT * FROM movies ORDER BY id DESC LIMIT $start_from, $per_page_record");
                                     $data->execute();
                                     // set the resulting array to associative
                                     $data->setFetchMode(PDO::FETCH_ASSOC);
@@ -139,7 +177,6 @@
                                                     }
                                                 }
                                             }
-
                                             echo '<tr>
                                                 <td>'.++$keycount.'</td>
                                                 <td>'.$row['title'].'</td>
@@ -153,6 +190,33 @@
                                 ?>
                             </tbody>
                         </table>
+                        <div class="pagination">    
+                            <?php
+
+                            $data_count = $conn->prepare("SELECT COUNT(*) FROM movies ");
+                            $data_count->execute();
+                            $data_count->setFetchMode(PDO::FETCH_ASSOC); 
+                                $total_records = $data_count->fetchColumn();
+                                echo "</br>";     
+                                    // Number of pages required.   
+                                    $total_pages = ceil($total_records / $per_page_record);     
+                                    $pagLink = "";       
+                                    
+                                    if($page>1){
+                                        echo "<a class='prev_btn' href='index?page=".($page-1)."'>  Prev </a>";   
+                                    }    
+                                    for ($i=1; $i<=$total_pages; $i++) {   
+                                        if ($i == $page) {   
+                                            $pagLink .= "<a class = 'active' href='index?page=".$i."'>".$i." </a>";   
+                                        } else {  
+                                            $pagLink .= "<a href='index?page=".$i."'> ".$i." </a>";     
+                                        }
+                                    }
+                                    if($page<$total_pages){   
+                                        echo "<a class='next_btn' href='index?page=".($page+1)."'>  Next </a>";   
+                                    }
+                            ?>    
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -203,14 +267,5 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 
-
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#moviesTable").DataTable();
-        });
-    </script>
 </body>
 </html>
